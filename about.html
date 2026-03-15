@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Bryce M. Gelarden</title>
+  <title>About Me — Bryce M. Gelarden</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -48,17 +48,52 @@
       max-width: 720px;
       margin: 0 auto;
     }
-    .content h1 {
-      font-size: 1.5rem;
-      font-weight: normal;
-      margin-bottom: 1rem;
+    .page-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      text-decoration: underline;
       color: #222;
+      margin-bottom: 2rem;
+    }
+    .content h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #444;
     }
     .content p {
       color: #444;
       margin-bottom: 1rem;
     }
     .placeholder { color: #666; font-style: italic; }
+    .about-logos {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .about-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .about-logo-row:first-child img {
+      margin-left: 3.5rem;
+    }
+    .about-logos img {
+      height: 100px;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+    .about-logo-text {
+      color: #444;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -69,13 +104,25 @@
       <li><a href="experience.html">Experience</a></li>
       <li><a href="projects.html">Research/Projects</a></li>
       <li><a href="skills.html">Skills</a></li>
+      <li><a href="extras.html">Extras</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
   <main class="content">
-    <h1>About</h1>
-    <p class="placeholder">Under Construction — Come Back Soon!</p>
+    <h1 class="page-title">About Me</h1>
+    <h2>Education</h2>
+    <p>Currently a second-year undergraduate student at Indiana University - Bloomington pursuing a multidisciplinary education in Operations Management at the Kelley School of Business and Data Science at the Luddy School of Informatics, Computing, and Engineering, along with minors in Statistics and Decision Science.</p>
+    <div class="about-logos">
+      <div class="about-logo-row">
+        <img src="images/iu_kelley_logo.png" alt="Kelley School of Business">
+        <div class="about-logo-text"></div>
+      </div>
+      <div class="about-logo-row">
+        <img src="images/iu_luddy_logo.png" alt="Luddy School of Informatics, Computing, and Engineering">
+        <div class="about-logo-text"></div>
+      </div>
+    </div>
   </main>
 </body>
 </html>
