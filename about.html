@@ -66,33 +66,23 @@
       color: #444;
       margin-bottom: 1rem;
     }
-    .placeholder { color: #666; font-style: italic; }
     .about-logos {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #ddd;
-    }
-    .about-logo-row {
-      display: flex;
+      flex-direction: row;
       align-items: center;
-      gap: 1rem;
-    }
-    .about-logo-row:first-child img {
-      margin-left: 3.5rem;
+      justify-content: flex-start;
+      gap: 2rem;
+      margin-top: 2rem;
     }
     .about-logos img {
       height: 100px;
       width: auto;
       display: block;
-      flex-shrink: 0;
     }
-    .about-logo-text {
-      color: #444;
-      font-size: 1rem;
+    .section-divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin-top: 2rem;
     }
   </style>
 </head>
@@ -114,15 +104,10 @@
     <h2>Education</h2>
     <p>Currently a second-year undergraduate student at Indiana University - Bloomington pursuing a multidisciplinary education in Operations Management at the Kelley School of Business and Data Science at the Luddy School of Informatics, Computing, and Engineering, along with minors in Statistics and Decision Science.</p>
     <div class="about-logos">
-      <div class="about-logo-row">
-        <img src="images/iu_kelley_logo.png" alt="Kelley School of Business">
-        <div class="about-logo-text"></div>
-      </div>
-      <div class="about-logo-row">
-        <img src="images/iu_luddy_logo.png" alt="Luddy School of Informatics, Computing, and Engineering">
-        <div class="about-logo-text"></div>
-      </div>
+      <img src="images/iu_kelley_logo.png" alt="Kelley School of Business">
+      <img src="images/iu_luddy_logo.png" alt="Luddy School of Informatics, Computing, and Engineering">
     </div>
+    <hr class="section-divider">
   </main>
 </body>
 </html>
