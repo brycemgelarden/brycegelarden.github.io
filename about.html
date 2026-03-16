@@ -68,21 +68,106 @@
     }
     .about-logos {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       gap: 2rem;
-      margin-top: 2rem;
+      margin-top: 0;
     }
     .about-logos img {
       height: 100px;
       width: auto;
       display: block;
     }
+    .about-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+    .about-text {
+      flex: 1;
+      max-width: 54ch;
+    }
+    .text-item {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 100%;
+    }
+    .text-item p {
+      margin: 0;
+    }
+    .text-item:not(.third) {
+      padding-left: 2rem;
+    }
+    .text-item::before {
+      content: '';
+      position: absolute;
+      left: -3rem;
+      top: 50%;
+      width: 4rem;
+      height: 1px;
+      background: #666;
+    }
+    .text-item.third {
+      height: auto;
+      margin-top: 0;
+      margin-left: 4rem;
+      padding-right: 2rem;
+    }
+    .text-item.third::before {
+      display: none;
+    }
+
     .section-divider {
       border: none;
       border-top: 1px solid #ddd;
       margin-top: 2rem;
+    }
+
+    .section-divider--spaced {
+      margin-top: 3rem;
+    }
+
+    .content h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #444;
+    }
+    .content h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .tab-button {
+      padding: 0.5rem 1rem;
+      border: 2px solid red;
+      background: white;
+      color: red;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    .tab-button.active {
+      background: linear-gradient(to right, #ff0000, #cc0000);
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
     }
   </style>
 </head>
@@ -103,11 +188,116 @@
     <h1 class="page-title">About Me</h1>
     <h2>Education</h2>
     <p>Currently a second-year undergraduate student at Indiana University - Bloomington pursuing a multidisciplinary education in Operations Management at the Kelley School of Business and Data Science at the Luddy School of Informatics, Computing, and Engineering, along with minors in Statistics and Decision Science.</p>
-    <div class="about-logos">
-      <img src="images/iu_kelley_logo.png" alt="Kelley School of Business">
-      <img src="images/iu_luddy_logo.png" alt="Luddy School of Informatics, Computing, and Engineering">
-    </div>
     <hr class="section-divider">
+    <div class="about-section">
+      <div class="about-logos">
+        <img src="images/iu_kelley_logo.png" alt="Kelley School of Business">
+        <img src="images/iu_luddy_logo.png" alt="Luddy School of Informatics, Computing, and Engineering">
+      </div>
+      <div class="about-text">
+        <div class="text-item"><p>Bachelor of Science in Business, BSB - <strong>Operations Management</strong></p></div>
+        <div class="text-item"><p>Bachelor of Science, BS - <strong>Data Science</strong></p></div>
+        <div class="text-item third"><p>*Minors: <strong>Statistics</strong>, <strong>Decision Science</strong></p></div>
+      </div>
+    </div>
+    <hr class="section-divider section-divider--spaced">
+    <h3>Campus Involvements</h3>
+    <p>  - Ostrom Workshop, Data Strategy Lab</p>
+    <p>  - BUS-P 454: Supply Chain Consulting Practicum</p>
+    <p>  - Kelley-to-Kelley Mentor Program</p>
+    <p>  - Supply Chain & Operations Management Association (SCOMA)</p>
+    <p>  - Chi Phi Fraternity, Iota Delta Chapter</p>
+    <hr class="section-divider section-divider--spaced">
+    <h3>Coursework</h3>
+    <div class="tab-buttons">
+      <button class="tab-button active" data-tab="spring2026">Spring 2026</button>
+      <button class="tab-button" data-tab="fall2025">Fall 2025</button>
+      <button class="tab-button" data-tab="spring2025">Spring 2025</button>
+      <button class="tab-button" data-tab="fall2024">Fall 2024</button>
+      <button class="tab-button" data-tab="totalcredits">Other</button>
+    </div>
+    <div id="spring2026" class="tab-content active">
+      <h4>Spring 2026</h4>
+      <p>BUS-K 353: Business Analytics & Modeling, 3 Cr.</p>
+      <p>DSCI-D 321: Data Strucutures and Representation, 3 Cr.</p>
+      <p>STAT-S 350: Statistical Inference I, 3 Cr.</p>
+      <p>BUS-A 306: Management Accounting and Analysis, 3 Cr.</p>
+      <p>BUS-G 202: Business, Government, and Society, 3 Cr.</p>
+      <p>ILS-Z 221: Intelligence Analytics, 3 Cr.</p>
+      <p>BUS-D 271: Doing Business in Asia (Global Business Analysis), 1.5 Cr.</p>
+      <p>BUS-T 375: Kelley Compass III, 1 Cr.</p>
+      <hr class="section-divider section-divider--spaced">
+    </div>
+    <div id="fall2025" class="tab-content">
+      <h4>Fall 2025</h4>
+      <p>CSCI-A 310: Problem Solving Using Data, 3 Cr.</p>
+      <p>MATH-E 265: Probability and Statistics for Data Science, 3 Cr.</p>
+      <p>BUS-K 303: Technology and Business Analytics, 3 Cr.</p>
+      <p>BUS-A 304: Financial Reporting and Analysis, 3 Cr.</p>
+      <p>ILS-Z 410: Social and Ethical Impacts of Big Data, 3 Cr.</p>
+      <p>BUS-L 201: Legal Environment of Business, 3 Cr.</p>
+      <p>BUS-T 275: Kelley Compass II, 1.5 Cr.</p>
+      <hr class="section-divider section-divider--spaced">
+    </div>
+    <div id="spring2025" class="tab-content">
+      <h4>Spring 2025</h4>
+      <p>BUS-K 201: Foundations of Business Information Systems and Decision Making, 3 Cr.</p>
+      <p>CSCI-C 241: Discrete Structures and Mathematics for Computer Science, 3 Cr.</p>
+      <p>MATH-E 201: Linear Algebra for Data Science, 3 Cr.</p>
+      <p>BUS-C 204: Business Writing, 3 Cr.</p>
+      <p>BUS-A 100: Introductory Accounting Principles and Analysis, 1 Cr.</p>
+      <hr class="section-divider section-divider--spaced">
+    </div>
+    <div id="fall2024" class="tab-content">
+      <h4>Fall 2024</h4>
+      <p>ECON-B 251: Fundamentals of Economics for Business I, 3 Cr.</p>
+      <p>CSCI-C 200: Introduction to Computers and Programming, 4 Cr.</p>
+      <p>INFO-I 123: Data Fluency, 3 Cr.</p>
+      <p>BUS-C 104: Business Presentations, 3 Cr.</p>
+      <p>BUS-X 170: How Business Works, 3 Cr.</p>
+      <p>BUS-D 270: Global Business Environments & Analysis, 1.5 Cr.</p>
+      <p>BUS-T 175: Kelley Compass I, 1.5 Cr.</p>
+      <hr class="section-divider section-divider--spaced">
+    </div>
+    <div id="totalcredits" class="tab-content">
+      <h4>Other Credits Earned (High School)</h4>
+      <h5>Math</h5>
+      <p>MATH-M 211: Calculus I</p>
+      <p>STAT-S 300: Introduction to Applied Statistical Methods</p>
+      <h5>English</h5>
+      <p>ENG-L 202: Literary Interpretation</p>
+      <p>ENG-W 131: Reading, Writing, + Inquiry</p>
+      <p>ENG-X 101: Pre-Composition</p>
+      <h5>Science</h5>
+      <p>BIOL-L 112: Foundations of Biology</p>
+      <p>BIOL-L 104: Introductory Biology</p>
+      <p>SPEA-E 183: Environment and People</p>
+      <h5>Social Sciences</h5>
+      <p>ECON-E 201: Introduction to Microeconomics </p>
+      <p>PSY-P 101: Introduction to Psychology</p>
+      <h5>Foreign Language</h5>
+      <p>HISP-S 250: Second-Year Spanish II</p>
+      <p>HISP-S 200: Second-Year Spanish I</p>
+      <p>HISP-S 150: Elementary Spanish II</p>
+      <p>HISP-S 100: Elementary Spanish I</p>
+      <h5>Other</h5>
+      <p>CSCI-C 102: Great Ideas in Computing</p>
+      <p>COLL-P 155: Public Oral Communication / Public Speaking</p>
+      <hr class="section-divider section-divider--spaced">
+    </div>
+    <h3>Before Coming to IU...</h3>
+    <p></p>
   </main>
+  <script>
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        const tabId = button.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
