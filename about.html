@@ -56,8 +56,14 @@
       color: #222;
       margin-bottom: 2rem;
     }
+    h1:not(.page-title) {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 1rem;
+    }
     .content h2 {
-      font-size: 1.15rem;
+      font-size: 1rem;
       font-weight: 600;
       margin-bottom: 0.75rem;
       color: #444;
@@ -138,11 +144,47 @@
       color: #444;
     }
     .content h4 {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      margin-top: 1rem;
+      margin-top: 0.75rem;
       margin-bottom: 0.5rem;
       color: #444;
+    }
+
+    .education-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .subheader {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: #444;
+    }
+
+    .edu-dates {
+      font-style: italic;
+      color: #444;
+    }
+
+    .before-iu {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .before-iu p {
+      flex: 1;
+      word-wrap: break-word;
+    }
+
+    .before-iu img {
+      height: 100px;
+      width: auto;
     }
     .tab-buttons {
       display: flex;
@@ -186,17 +228,24 @@
 
   <main class="content">
     <h1 class="page-title">About Me</h1>
-    <h2>Education</h2>
-    <p>Currently a second-year undergraduate student at Indiana University - Bloomington pursuing a multidisciplinary education in Operations Management at the Kelley School of Business and Data Science at the Luddy School of Informatics, Computing, and Engineering, along with minors in Statistics and Decision Science.</p>
+    <p>My name is Bryce Gelarden and I am a second-year undergraduate student at Indiana University from Munster, Indiana.</p>
+    <p>Currently, I am pursuing an interdisciplinary education in Operations Management, Data Science, Statistics, and Decision Science.</p>
+    <p>My journey is taking shape through research, problem-solving, and continuously asking questions at the intersection of these fields.</p>
+    <p>I strive to always lead with integrity, to listen before speaking, and to set a positive example for those around me.</p>
     <hr class="section-divider">
+    <h1>Education</h1>
+    <div class="education-header">
+      <h4 class="subheader">Indiana University - Bloomington</h4>
+      <span class="edu-dates"><em>2024-2028</em></span>
+    </div>
     <div class="about-section">
       <div class="about-logos">
         <img src="images/iu_kelley_logo.png" alt="Kelley School of Business">
         <img src="images/iu_luddy_logo.png" alt="Luddy School of Informatics, Computing, and Engineering">
       </div>
       <div class="about-text">
-        <div class="text-item"><p>Bachelor of Science in Business, BSB - <strong>Operations Management</strong></p></div>
-        <div class="text-item"><p>Bachelor of Science, BS - <strong>Data Science</strong></p></div>
+        <div class="text-item"><p><em>Bachelor of Science in Business,</em> BSB - <strong>Operations Management</strong></p></div>
+        <div class="text-item"><p><em>Bachelor of Science,</em> BS - <strong>Data Science</strong></p></div>
         <div class="text-item third"><p>*Minors: <strong>Statistics</strong>, <strong>Decision Science</strong></p></div>
       </div>
     </div>
@@ -208,7 +257,7 @@
     <p>  - Supply Chain & Operations Management Association (SCOMA)</p>
     <p>  - Chi Phi Fraternity, Iota Delta Chapter</p>
     <hr class="section-divider section-divider--spaced">
-    <h3>Coursework</h3>
+    <h3>Coursework @ IU</h3>
     <div class="tab-buttons">
       <button class="tab-button active" data-tab="spring2026">Spring 2026</button>
       <button class="tab-button" data-tab="fall2025">Fall 2025</button>
@@ -286,7 +335,15 @@
       <hr class="section-divider section-divider--spaced">
     </div>
     <h3>Before Coming to IU...</h3>
-    <p></p>
+    <div class="before-iu">
+      <p>Born and raised in Munster, Indiana, I am a proud graduate of <strong>Munster High School</strong> and remain grateful for the community that shaped me.</p>
+      <img src="images/munster_high_school.jpg" alt="Munster High School">
+    </div>
+    <p><strong>Leadership & Achievements</strong>:</p>
+    <p>  - Varsity Baseball: Captain, All-State</p>
+    <p>  - Speech and Debate: 2x State Champion (2023, 2024)</p>
+    <p>  - AP Scholar w/ Distinction</p>
+    <p>  - Jim and Betty Dye Scholar</p>
   </main>
   <script>
     document.querySelectorAll('.tab-button').forEach(button => {
