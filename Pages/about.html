@@ -49,16 +49,14 @@
       margin: 0 auto;
     }
     .page-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      text-decoration: underline;
+      font-size: 1.5rem;
+      font-weight: normal;
       color: #222;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
     }
     h1:not(.page-title) {
-      font-size: 1.8rem;
-      font-weight: bold;
+      font-size: 1.5rem;
+      font-weight: normal;
       color: #222;
       margin-bottom: 1rem;
     }
@@ -211,6 +209,18 @@
     .tab-content.active {
       display: block;
     }
+    footer {
+      border-top: 1px solid #ccc;
+      padding: 2rem;
+      text-align: center;
+      background: #f9f9f9;
+      margin-top: 3rem;
+    }
+    footer p {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -228,6 +238,7 @@
 
   <main class="content">
     <h1 class="page-title">About Me</h1>
+    <hr style="border: none; border-top: 2px solid #222; margin: 1rem 0 2rem 0;">
     <p>My name is Bryce Gelarden and I am a second-year undergraduate student at Indiana University from Munster, Indiana.</p>
     <p>Currently, I am pursuing an interdisciplinary education in Operations Management, Data Science, Statistics, and Decision Science.</p>
     <p>My journey is taking shape through research, problem-solving, and continuously asking questions at the intersection of these fields.</p>
@@ -240,8 +251,8 @@
     </div>
     <div class="about-section">
       <div class="about-logos">
-        <img src="images/iu_kelley_logo.png" alt="Kelley School of Business">
-        <img src="images/iu_luddy_logo.png" alt="Luddy School of Informatics, Computing, and Engineering">
+        <img src="../images/iu_kelley_logo.png" alt="Kelley School of Business">
+        <img src="../images/iu_luddy_logo.png" alt="Luddy School of Informatics, Computing, and Engineering">
       </div>
       <div class="about-text">
         <div class="text-item"><p><em>Bachelor of Science in Business,</em> BSB - <strong>Operations Management</strong></p></div>
@@ -337,7 +348,7 @@
     <h3>Before Coming to IU...</h3>
     <div class="before-iu">
       <p>Born and raised in Munster, Indiana, I am a proud graduate of <strong>Munster High School</strong> and remain grateful for the community that shaped me.</p>
-      <img src="images/munster_high_school.jpg" alt="Munster High School">
+      <img src="../images/munster_high_school.jpg" alt="Munster High School">
     </div>
     <p><strong>Leadership & Achievements</strong>:</p>
     <p>  - Varsity Baseball: Captain, All-State</p>
@@ -356,5 +367,8 @@
       });
     });
   </script>
+  <footer>
+    <p>&copy; 2026 Bryce M. Gelarden. All rights reserved.</p>
+  </footer>
 </body>
 </html>

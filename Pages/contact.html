@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Bryce M. Gelarden</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #fff;
+      color: #222;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .top-nav {
+      background: #fff;
+      border-bottom: 1px solid #ccc;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .top-nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .top-nav a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      color: #222;
+      text-decoration: none;
+      font-size: 1rem;
+      border: 1px solid #999;
+      background: #fff;
+      transition: background 0.2s, color 0.2s;
+    }
+    .top-nav a:hover {
+      background: #222;
+      color: #fff;
+      border-color: #222;
+    }
+    .content {
+      padding: 3rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .content h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+    .content form {
+      margin-top: 2rem;
+      padding: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #f9f9f9;
+    }
+    .content label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #222;
+    }
+    .content input, .content textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .content button {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .content button:hover {
+      background: #444;
+    }
+    .section-divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin-top: 2rem;
+    }
+    footer {
+      border-top: 1px solid #ccc;
+      padding: 2rem;
+      text-align: center;
+      background: #f9f9f9;
+      margin-top: 3rem;
+    }
+    footer p {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav" aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Research/Projects</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="extras.html">Extras</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <h1>Contact</h1>
+    <hr style="border: none; border-top: 2px solid #222; margin: 1.5rem 0 2rem 0;">
+    <p><a href="mailto:bryce.m.gelarden@gmail.com">bryce.m.gelarden@gmail.com</a></p>
+    <p><a href="mailto:bgelard@iu.edu">bgelard@iu.edu</a></p>
+    <p><a href="https://www.linkedin.com/in/brycegelarden">LinkedIn</a></p>
+    <hr class="section-divider">
+    <br>
+    <p>Shoot me a note from here ...</p>
+
+    <form action="https://formspree.io/f/meerrzgn" method="POST">
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      
+      <button type="submit">Send Message</button>
+    </form>
+  </main>
+  <footer>
+    <p>&copy; 2026 Bryce M. Gelarden. All rights reserved.</p>
+  </footer>
+</body>
+</html>

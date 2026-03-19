@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — Bryce M. Gelarden</title>
+  <title>Skills — Bryce M. Gelarden</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -54,40 +54,27 @@
       margin-bottom: 1rem;
       color: #222;
     }
-    .content form {
-      margin-top: 2rem;
-      padding: 2rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background: #f9f9f9;
-    }
-    .content label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: #222;
-    }
-    .content input, .content textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 1rem;
+    .content p {
+      color: #444;
       margin-bottom: 1rem;
     }
-    .content button {
-      background: #222;
-      color: #fff;
+    .placeholder { color: #666; font-style: italic; }
+    .section-divider {
       border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
+      border-top: 1px solid #ddd;
+      margin-top: 2rem;
     }
-    .content button:hover {
-      background: #444;
+    footer {
+      border-top: 1px solid #ccc;
+      padding: 2rem;
+      text-align: center;
+      background: #f9f9f9;
+      margin-top: 3rem;
+    }
+    footer p {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0;
     }
   </style>
 </head>
@@ -105,22 +92,12 @@
   </nav>
 
   <main class="content">
-    <h1>Contact</h1>
-    <p><a href="mailto:bryce.m.gelarden@gmail.com">bryce.m.gelarden@gmail.com</a></p>
-    <p><a href="mailto:bgelard@iu.edu">bgelard@iu.edu</a></p>
-    <p><a href="https://www.linkedin.com/in/brycegelarden">LinkedIn</a></p>
-    <hr class="section-divider">
-    <p>Shoot me a note from here ...</p>
-    
-    <form action="https://formspree.io/f/meerrzgn" method="POST">
-      <label for="email">Your Email:</label>
-      <input type="email" id="email" name="email" required>
-      
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-      
-      <button type="submit">Send Message</button>
-    </form>
+    <h1>Skills</h1>
+    <hr style="border: none; border-top: 2px solid #222; margin: 1.5rem 0 2rem 0;">
+    <p class="placeholder">Under Construction — Come Back Soon!</p>
   </main>
+  <footer>
+    <p>&copy; 2026 Bryce M. Gelarden. All rights reserved.</p>
+  </footer>
 </body>
 </html>
