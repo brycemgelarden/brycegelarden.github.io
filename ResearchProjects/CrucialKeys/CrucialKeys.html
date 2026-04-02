@@ -54,76 +54,195 @@
 			margin: 0 auto;
 		}
 		.content h1 {
-			font-size: 1.5rem;
+			font-size: 1.75rem;
 			font-weight: normal;
-			margin-bottom: 1rem;
+			margin: 0;
 			color: #222;
 		}
-		.project-card {
-			border: 1px solid #ddd;
-			background: #fff;
-			padding: 1.2rem;
+		.page-header {
 			display: flex;
-			gap: 2rem;
+			justify-content: space-between;
 			align-items: flex-start;
+			gap: 1rem;
 		}
-		.project-copy {
-			flex: 1;
-		}
-		.project-date {
-			color: #999;
-			font-size: 0.9rem;
-			margin-bottom: 0.75rem;
-		}
-		.project-copy p {
-			color: #444;
-			margin-bottom: 1rem;
-		}
-		.placeholder-box {
-			width: 260px;
-			min-height: 180px;
-			border: 1px dashed #bfbfbf;
-			background: #fafafa;
-			color: #777;
-			font-style: italic;
+		.page-title-group {
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			padding: 1rem;
-			flex-shrink: 0;
+			flex-direction: column;
+			gap: 0.35rem;
 		}
-		.project-image {
-			width: 260px;
-			min-height: 180px;
-			border: 1px solid #d8d8d8;
-			background: #fafafa;
-			padding: 0.5rem;
-			flex-shrink: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		.project-image img {
-			display: block;
-			max-width: 100%;
-			max-height: 100%;
-			width: auto;
-			height: auto;
-			object-fit: contain;
-		}
-		.project-button {
+		.top-back-btn {
 			display: inline-block;
-			padding: 0.75rem 1.5rem;
+			padding: 0.6rem 1.1rem;
 			background: #222;
 			color: #fff;
 			text-decoration: none;
 			border-radius: 4px;
 			transition: background 0.2s;
 			font-weight: 600;
+			white-space: nowrap;
 		}
-		.project-button:hover {
+		.top-back-btn:hover {
 			background: #000;
+		}
+		.project-card {
+			padding: 0;
+			display: block;
+		}
+		.project-copy {
+			flex: 1;
+		}
+		.content-sections {
+			display: flex;
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+		.content-section h2 {
+			font-size: 1.28rem;
+			font-weight: 600;
+			color: #222;
+			margin: 0;
+			text-decoration: underline;
+			text-underline-offset: 0.16em;
+		}
+		.overview-copy {
+			margin-top: 0.6rem;
+		}
+		.overview-copy p {
+			margin: 0 0 0.45rem 0;
+		}
+		.overview-copy p:last-child {
+			margin-bottom: 0;
+		}
+		.system-copy {
+			margin-top: 0.6rem;
+		}
+		.system-copy p {
+			margin: 0;
+		}
+		.project-date {
+			color: #999;
+			font-size: 0.9rem;
+			margin: 0;
+		}
+		.project-copy p {
+			color: #444;
+			margin-bottom: 1rem;
+		}
+		.content-placeholder {
+			color: #666;
+			font-style: italic;
+			margin-top: 0.9rem;
+			margin-bottom: 0;
+		}
+		.code-block {
+			margin-top: 0.6rem;
+			background: #f7f7f7;
+			border: 1px solid #ddd;
+			padding: 0.9rem;
+			overflow-x: auto;
+		}
+		.code-dropdown {
+			margin-top: 0.5rem;
+			border: 1px solid #ddd;
+			background: #fafafa;
+		}
+		.code-dropdown summary {
+			padding: 0.75rem 0.9rem;
+			cursor: pointer;
+			font-weight: 600;
+			color: #222;
+			list-style: none;
+		}
+		.code-dropdown summary::-webkit-details-marker {
+			display: none;
+		}
+		.code-dropdown summary::before {
+			content: "+ ";
+		}
+		.code-dropdown[open] summary::before {
+			content: "- ";
+		}
+		.code-dropdown[open] summary {
+			border-bottom: 1px solid #ddd;
+		}
+		.code-dropdown .code-block {
+			margin: 0;
+			border: none;
+			background: #f7f7f7;
+		}
+		.code-block code {
+			font-family: Consolas, 'Courier New', monospace;
+			font-size: 0.86rem;
+			line-height: 1.45;
+			color: #222;
+			white-space: pre;
+			display: block;
+		}
+		.pipeline-box {
+			margin-top: 0.7rem;
+			background: #f3f3f3;
+			border: 1px solid #ddd;
+			padding: 0.9rem;
+		}
+		.pipeline-flow {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+			gap: 0.45rem;
+		}
+		.pipeline-step {
+			background: #fff;
+			border: 1px solid #d2d2d2;
+			padding: 0.35rem 0.65rem;
+			font-size: 0.93rem;
+			color: #222;
+		}
+		.pipeline-arrow {
+			color: #555;
+			font-weight: 600;
+		}
+		.visuals-copy {
+			margin-top: 0.6rem;
+		}
+		.visuals-copy p {
+			margin: 0 0 0.9rem 0;
+		}
+		.visuals-note {
+			margin: 1.35rem 0 0 0;
+		}
+		.visuals-gallery {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.9rem;
+			max-width: 760px;
+			margin: 0 auto;
+			margin-bottom: 2rem;
+		}
+		.visual-item {
+			margin: 0;
+			text-align: center;
+		}
+		.visuals-gallery img {
+			display: block;
+			width: 100%;
+			max-width: 340px;
+			height: auto;
+			border: 1px solid #ddd;
+			background: #fafafa;
+			padding: 0.35rem;
+			justify-self: center;
+		}
+		.visual-caption {
+			margin-top: 0.45rem;
+			font-size: 0.86rem;
+			color: #555;
+		}
+		.bottom-back-wrap {
+			margin-top: 1.25rem;
+		}
+		.visuals-code-group {
+			margin-top: 1.2rem;
 		}
 		.section-divider {
 			border: none;
@@ -146,14 +265,15 @@
 			.content {
 				padding: 2.2rem 1.2rem;
 			}
-			.project-card {
+			.page-header {
 				flex-direction: column;
-				gap: 1rem;
+				align-items: flex-start;
 			}
-			.project-image,
-			.placeholder-box {
-				width: 100%;
-				min-height: 150px;
+			.visuals-gallery {
+				grid-template-columns: 1fr;
+			}
+			.visuals-gallery img {
+				max-width: 520px;
 			}
 		}
 		@media (max-width: 640px) {
@@ -162,6 +282,9 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
+			}
+			.pipeline-step {
+				font-size: 0.88rem;
 			}
 		}
 	</style>
@@ -180,23 +303,223 @@
 	</nav>
 
 	<main class="content">
-		<h1>Crucial Keys</h1>
+		<div class="page-header">
+			<div class="page-title-group">
+				<h1>Crucial Keys</h1>
+				<p class="project-date">November 2025</p>
+			</div>
+			<a href="../../Pages/projects.html" class="top-back-btn">Back to Projects</a>
+		</div>
 		<hr style="border: none; border-top: 2px solid #222; margin: 1.5rem 0 2rem 0;">
 
 		<section class="project-card" aria-label="Crucial Keys project overview">
 			<div class="project-copy">
-				<p class="project-date">November 2025</p>
-				<p>
-					A mini-project focused on capturing and analyzing my daily keystrokes across lecture notes, emails, and everyday use, transforming raw input into structured visualizations through a custom-built data pipeline to better understand how data is stored and used in early machine learning workflows.
-				</p>
-				<a href="../../Pages/projects.html" class="project-button">Back to Projects</a>
-			</div>
-			<div class="project-image" aria-label="Crucial Keys heatmap visualization">
-				<img src="/images/CrucialKeys-Heatmap.png" alt="Crucial Keys heatmap visualization">
+				<div class="content-sections">
+					<section class="content-section" aria-label="Overview section">
+						<h2>Overview</h2>
+						<div class="overview-copy">
+							<p>This work was not an attempt to build anything complex, instead <strong>an attempt to understand a fundamental concept in the machine learning space.</strong> Rome wasn't built in a day, but <em>Crucial Keys</em> was.</p>
+							<p>To understand how machines do their learning, I started by asking myself, 'how do I learn?' After all, humans can't be much different from machines, right? We built them, right?</p>
+                            <p>Whether it's by listening, reading, watching, or writing, all learning boils down to what's stored in the brain, or better yet, what can <strong>stick</strong> in your memory.  So, how could I see first-hand how my computer stores memory, and how it learns when explicitly instructed?</p>
+                            <p>Our main human-computer interaction comes at our fingertips when using the keyboard, marking a great starting point.  This mini-project collects ~2 weeks of my keystrokes through lecture notes, emails, and other documents by parsing through text, extracting the characters, and visualizing the results of storage.</p>
+                            <p>The results aren't groundbreaking, but something more foundational: a clearer, hands-on understanding of how raw inputs can turn to structured data, and how simple systems begin resembling building blocks of machine learning.</p>
+						</div>
+					</section>
+					<section class="content-section" aria-label="System section">
+						<h2>System</h2>
+						<div class="system-copy">
+							<p>The system was designed as a very lightweight pipeline to collect, store, and update a running “memory” of my daily keystrokes.</p>
+                            <p>At its core, the program reads text from documents (notes, emails, and other writing), extracts alphabetical characters, and aggregates their frequency over time. Each new file input updates an existing memory store, allowing the dataset incrementally grow rather than consistently recomputing from scratch.</p>
+
+                        <ul>
+                        <li><strong>Data Collection:</strong> Text files are parsed and cleaned to isolate individual alphabetic characters</li>
+                        <li><strong>Storage:</strong> A standing JSON file acts as long-term memory, storing character frequencies cumulatively</li>
+                        <li><strong>Processing:</strong> Python's <code>Counter</code> class is used to efficiently update the letter counts</li>
+                        <li><strong>State Management:</strong> The system loads existing memory, updates with new data, and writes it back to disk (when told to do so)</li>
+                        </ul>
+                        <br>
+                        <p>JSON was chosen as the storage format here for simplicity, making the underlying data easy to see (and later visualize). The design prioritizes clarity over complexity, reflecting how foundational data pipelines operate before the need to scale to a larger system.</p>
+                        <p>Rather than treating each dataset independently, we maintain a continuously evolving memory—resembling how learning systems amass information over time.</p>
+                        <p><strong>Code for the system is shown below:</strong></p>
+						<details class="code-dropdown">
+							<summary>Click to expand full Python script</summary>
+							<pre class="code-block"><code>import json
+import os
+from collections import Counter
+
+
+MEMORY_FILE = "CrucialKeys/memory.json"
+
+def load_memory():
+	if os.path.exists(MEMORY_FILE):
+		try:
+			with open(MEMORY_FILE, "r") as f:
+				data = f.read().strip()
+				if not data:
+					return Counter()
+				return Counter(json.loads(data))
+		except json.JSONDecodeError:
+			print("Warning: memory.json is empty or corrupted. Starting fresh.")
+			return Counter()
+	return Counter()
+
+
+def save_memory(memory):
+	with open(MEMORY_FILE, "w") as f:
+		json.dump(memory, f, indent=2)
+
+
+def analyze_text(text):
+	text = text.lower()
+	letters = [ch for ch in text if ch.isalpha()]
+	return Counter(letters)
+
+
+if __name__ == "__main__":
+	print("CrucialKeys - Letter Memory System\n")
+
+	memory = load_memory()
+	print(f"Loaded memory: {sum(memory.values())} characters tracked so far.\n")
+
+	file_name = input("Enter filename in /TextData folder (ex: essay1.txt): ")
+
+	with open(f"CrucialKeys/TextData/{file_name}", "r", encoding="utf-8") as f:
+		text = f.read()
+
+	new_counts = analyze_text(text)
+	memory.update(new_counts)
+	save_memory(memory)
+
+	print("\nMemory updated successfully!")
+	print(f"Total characters tracked: {sum(memory.values())}")
+	print(f"Unique letters tracked: {len(memory)}")</code></pre>
+						</details>
+						</div>
+					</section>
+					<section class="content-section" aria-label="Pipeline section">
+						<h2>Pipeline</h2>
+						<div class="pipeline-box" aria-label="Pipeline flow diagram">
+							<div class="pipeline-flow">
+								<span class="pipeline-step">Keystrokes</span>
+								<span class="pipeline-arrow" aria-hidden="true">-&gt;</span>
+								<span class="pipeline-step">JSON</span>
+								<span class="pipeline-arrow" aria-hidden="true">-&gt;</span>
+								<span class="pipeline-step">Aggregation</span>
+								<span class="pipeline-arrow" aria-hidden="true">-&gt;</span>
+								<span class="pipeline-step">Visualization</span>
+							</div>
+						</div>
+					</section>
+					<section class="content-section" aria-label="Visuals section">
+						<h2>Visuals</h2>
+						<div class="visuals-copy">
+							<p>And now for the results, if you were curious which keys are used most ...</p>
+							<div class="visuals-gallery" aria-label="Crucial Keys result visualizations">
+								<figure class="visual-item">
+									<img src="CrucialKeys_images/CrucialKeys-BarChart.png" alt="Crucial Keys bar chart">
+									<figcaption class="visual-caption">Figure 1: Overall Distribution of Key Counts (Alphabetical)</figcaption>
+								</figure>
+								<figure class="visual-item">
+									<img src="CrucialKeys_images/CrucialKeys-Heatmap.png" alt="Crucial Keys heatmap">
+									<figcaption class="visual-caption">Figure 2: Relative Frequency of Key Usage w/ Heatmap (QWERTY Format)</figcaption>
+								</figure>
+							</div>
+							<p class="visuals-note">The vizualizations in <em>Fig. 1</em> and <em>Fig. 2</em> above share a simple view into how frequently different keys are used in everyday life as a sophomore undergraduate.</p>
+							<p>The chart on the left (<em>Fig. 1</em>) shows the overall distribution of keys and their total frequencies, while the chart on the right (<em>Fig. 2</em>) presents a relative frequency heatmap in the shape of a keyboard, offering a more intuitive look at usage when distributed spatially.</p>
+							<p>As expected, common letters such as <strong>E</strong>, <strong>T</strong>, and <strong>A</strong> appear most frequently.</p>
+							<p>Most importantly, this step demonstrates how raw, or unstructured inputs are transformed into clear, interpretable patterns through a minimal data pipeline.</p>
+							<div class="visuals-code-group">
+								<details class="code-dropdown">
+									<summary>Click to expand Fig. 1 Python script</summary>
+									<pre class="code-block"><code>def load_memory():
+	"""Load stored letter frequencies from JSON file."""
+	with open(MEMORY_FILE, "r", encoding="utf-8") as f:
+		data = json.load(f)
+	return Counter(data)
+
+def visualize_memory(memory, order="alphabetical"):
+	"""Visualize stored letter frequencies in bar chart form."""
+	letters = list(memory.keys())
+	counts = [memory[ch] for ch in letters]
+
+	if order == "alphabetical":
+		letters, counts = zip(*sorted(zip(letters, counts)))
+	elif order == "keyboard":
+		keyboard_order = list("qwertyuiopasdfghjklzxcvbnm")
+		letters, counts = zip(*sorted(
+			zip(letters, counts),
+			key=lambda x: keyboard_order.index(x[0]) if x[0] in keyboard_order else 999
+		))
+
+	plt.figure(figsize=(10, 5))
+	plt.bar(letters, counts, color="royalblue", alpha=0.8)
+	plt.title("CrucialKeys: Letter Frequency Analysis", fontsize=14, weight='bold')
+	plt.xlabel("Letters")
+	plt.ylabel("Count")
+	plt.grid(axis='y', linestyle='--', alpha=0.7)
+	plt.tight_layout()
+	plt.show()</code></pre>
+								</details>
+								<details class="code-dropdown">
+									<summary>Click to expand Fig. 2 Python script</summary>
+									<pre class="code-block"><code>def load_memory():
+	if os.path.exists(MEMORY_FILE):
+		with open(MEMORY_FILE, "r") as f:
+			return json.load(f)
+	else:
+		print("No memory file found!")
+		return {}
+
+keyboard_layout = [
+	list("qwertyuiop"),
+	list("asdfghjkl"),
+	list("zxcvbnm")
+]
+
+def create_heatmap_data(freqs):
+	max_len = max(len(row) for row in keyboard_layout)
+	max_val = max(freqs.values()) if freqs else 1
+	heatmap = []
+	for row in keyboard_layout:
+		row_data = [freqs.get(ch, 0) / max_val for ch in row]
+		while len(row_data) &lt; max_len:
+			row_data.append(0)
+		heatmap.append(row_data)
+	return np.array(heatmap)
+
+def plot_keyboard_heatmap(freqs):
+	heatmap_data = create_heatmap_data(freqs)
+
+	plt.figure(figsize=(10, 4))
+	plt.imshow(heatmap_data, cmap="coolwarm", interpolation="nearest", vmin=0, vmax=1)
+
+	for i, row in enumerate(keyboard_layout):
+		for j, key in enumerate(row):
+			plt.text(j, i, key.upper(), ha="center", va="center",
+					 color="white", fontsize=14, fontweight="bold")
+
+	plt.title("CrucialKeys: Keyboard Letter Frequency Heatmap", fontsize=16, pad=20)
+	plt.axis("off")
+	cbar = plt.colorbar(label="Relative Frequency")
+	cbar.ax.tick_params(labelsize=10)
+	plt.tight_layout()
+	plt.show()</code></pre>
+								</details>
+							</div>
+						</div>
+					</section>
+					<section class="content-section" aria-label="Learning and Reflection section">
+						<h2>Learning &amp; Reflection</h2>
+						<p>This project reinforced that <strong>raw data</strong> may come unstructured and gains use through deliberate <strong>storage</strong>, <strong>aggregation</strong>, and <strong>transformation</strong>. By building a simple system with persistent memory, I gained a more intuitive understanding of how data is incrementally accumulated and shaped into something that mirrors foundational mechanics behind early <strong>machine learning pipelines</strong>.</p>
+					</section>
+				</div>
 			</div>
 		</section>
 
 		<hr class="section-divider">
+		<div class="bottom-back-wrap">
+			<a href="../../Pages/projects.html" class="top-back-btn">Back to Projects</a>
+		</div>
 	</main>
 	<footer>
 		<p>&copy; 2026 Bryce M. Gelarden. All rights reserved.</p>
