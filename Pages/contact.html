@@ -38,10 +38,15 @@
       background: #fff;
       transition: background 0.2s, color 0.2s;
     }
-    .top-nav a:hover {
+    .top-nav a:hover,
+    .top-nav a.active {
       background: #222;
       color: #fff;
       border-color: #222;
+    }
+    .top-nav a:focus-visible {
+      outline: 2px solid #222;
+      outline-offset: 2px;
     }
     .content {
       padding: 3rem 2rem;
@@ -94,6 +99,14 @@
       border-top: 1px solid #ddd;
       margin-top: 2rem;
     }
+    @media (max-width: 640px) {
+      .top-nav a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
     footer {
       border-top: 1px solid #ccc;
       padding: 2rem;
@@ -117,7 +130,7 @@
       <li><a href="projects.html">Research/Projects</a></li>
       <li><a href="skills.html">Skills</a></li>
       <li><a href="extras.html">Extras</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
   </nav>
 

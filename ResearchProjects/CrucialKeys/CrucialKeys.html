@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Crucial Keys — Bryce M. Gelarden</title>
+	<style>
+		* { box-sizing: border-box; margin: 0; padding: 0; }
+		body {
+			font-family: Georgia, 'Times New Roman', serif;
+			background: #fff;
+			color: #222;
+			line-height: 1.6;
+			min-height: 100vh;
+		}
+		.top-nav {
+			background: #fff;
+			border-bottom: 1px solid #ccc;
+			padding: 1rem 2rem;
+			position: sticky;
+			top: 0;
+			z-index: 10;
+		}
+		.top-nav ul {
+			list-style: none;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 0.5rem;
+		}
+		.top-nav a {
+			display: inline-block;
+			padding: 0.5rem 1rem;
+			color: #222;
+			text-decoration: none;
+			font-size: 1rem;
+			border: 1px solid #999;
+			background: #fff;
+			transition: background 0.2s, color 0.2s;
+		}
+		.top-nav a:hover,
+		.top-nav a.active {
+			background: #222;
+			color: #fff;
+			border-color: #222;
+		}
+		.top-nav a:focus-visible {
+			outline: 2px solid #222;
+			outline-offset: 2px;
+		}
+		.content {
+			padding: 3rem 2rem;
+			max-width: 820px;
+			margin: 0 auto;
+		}
+		.content h1 {
+			font-size: 1.5rem;
+			font-weight: normal;
+			margin-bottom: 1rem;
+			color: #222;
+		}
+		.project-card {
+			border: 1px solid #ddd;
+			background: #fff;
+			padding: 1.2rem;
+			display: flex;
+			gap: 2rem;
+			align-items: flex-start;
+		}
+		.project-copy {
+			flex: 1;
+		}
+		.project-date {
+			color: #999;
+			font-size: 0.9rem;
+			margin-bottom: 0.75rem;
+		}
+		.project-copy p {
+			color: #444;
+			margin-bottom: 1rem;
+		}
+		.placeholder-box {
+			width: 260px;
+			min-height: 180px;
+			border: 1px dashed #bfbfbf;
+			background: #fafafa;
+			color: #777;
+			font-style: italic;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 1rem;
+			flex-shrink: 0;
+		}
+		.project-image {
+			width: 260px;
+			min-height: 180px;
+			border: 1px solid #d8d8d8;
+			background: #fafafa;
+			padding: 0.5rem;
+			flex-shrink: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.project-image img {
+			display: block;
+			max-width: 100%;
+			max-height: 100%;
+			width: auto;
+			height: auto;
+			object-fit: contain;
+		}
+		.project-button {
+			display: inline-block;
+			padding: 0.75rem 1.5rem;
+			background: #222;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 4px;
+			transition: background 0.2s;
+			font-weight: 600;
+		}
+		.project-button:hover {
+			background: #000;
+		}
+		.section-divider {
+			border: none;
+			border-top: 1px solid #ddd;
+			margin: 2rem 0;
+		}
+		footer {
+			border-top: 1px solid #ccc;
+			padding: 2rem;
+			text-align: center;
+			background: #f9f9f9;
+			margin-top: 3rem;
+		}
+		footer p {
+			color: #666;
+			font-size: 0.9rem;
+			margin: 0;
+		}
+		@media (max-width: 760px) {
+			.content {
+				padding: 2.2rem 1.2rem;
+			}
+			.project-card {
+				flex-direction: column;
+				gap: 1rem;
+			}
+			.project-image,
+			.placeholder-box {
+				width: 100%;
+				min-height: 150px;
+			}
+		}
+		@media (max-width: 640px) {
+			.top-nav a {
+				min-height: 44px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	</style>
+</head>
+<body>
+	<nav class="top-nav" aria-label="Main navigation">
+		<ul>
+			<li><a href="../../index.html">Home</a></li>
+			<li><a href="../../Pages/about.html">About</a></li>
+			<li><a href="../../Pages/experience.html">Experience</a></li>
+			<li><a href="../../Pages/projects.html" class="active">Research/Projects</a></li>
+			<li><a href="../../Pages/skills.html">Skills</a></li>
+			<li><a href="../../Pages/extras.html">Extras</a></li>
+			<li><a href="../../Pages/contact.html">Contact</a></li>
+		</ul>
+	</nav>
+
+	<main class="content">
+		<h1>Crucial Keys</h1>
+		<hr style="border: none; border-top: 2px solid #222; margin: 1.5rem 0 2rem 0;">
+
+		<section class="project-card" aria-label="Crucial Keys project overview">
+			<div class="project-copy">
+				<p class="project-date">November 2025</p>
+				<p>
+					A mini-project focused on capturing and analyzing my daily keystrokes across lecture notes, emails, and everyday use, transforming raw input into structured visualizations through a custom-built data pipeline to better understand how data is stored and used in early machine learning workflows.
+				</p>
+				<a href="../../Pages/projects.html" class="project-button">Back to Projects</a>
+			</div>
+			<div class="project-image" aria-label="Crucial Keys heatmap visualization">
+				<img src="/images/CrucialKeys-Heatmap.png" alt="Crucial Keys heatmap visualization">
+			</div>
+		</section>
+
+		<hr class="section-divider">
+	</main>
+	<footer>
+		<p>&copy; 2026 Bryce M. Gelarden. All rights reserved.</p>
+	</footer>
+</body>
+</html>

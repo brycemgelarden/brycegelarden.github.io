@@ -43,10 +43,15 @@
       background: #fff;
       transition: background 0.2s, color 0.2s;
     }
-    .top-nav a:hover {
+    .top-nav a:hover,
+    .top-nav a.active {
       background: #222;
       color: #fff;
       border-color: #222;
+    }
+    .top-nav a:focus-visible {
+      outline: 2px solid #222;
+      outline-offset: 2px;
     }
 
     .landing {
@@ -111,6 +116,14 @@
         white-space: normal;
       }
     }
+    @media (max-width: 640px) {
+      .top-nav a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
     .tagline-divider {
       height: 1px;
       background: #ccc;
@@ -153,7 +166,7 @@
 <body>
   <nav class="top-nav" aria-label="Main navigation">
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="Pages/about.html">About</a></li>
       <li><a href="Pages/experience.html">Experience</a></li>
       <li><a href="Pages/projects.html">Research/Projects</a></li>
