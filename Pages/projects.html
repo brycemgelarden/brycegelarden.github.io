@@ -22,11 +22,27 @@
     <header class="page-header">
       <h1>Research/Projects</h1>
     </header>
-    <p>This page contains research, projects, writings, reports, and other work I wish to share with hope to inspire others.</p>
-    <p>Currently working on new things and optimizing older tidbits to embed easily on this page. </p>
-    <p><strong>Go Hoosiers!</strong></p>
+    <p>This page contains research, projects, writings, reports, and other work I wish to share hoping to inspire others.</p>
+    <p><strong style="color:#990000">Go Hoosiers!</strong></p>
     <hr class="section-divider">
-    <section class="project-list" aria-label="Project highlights">
+    <section class="current-work" aria-label="Current work" style="margin-bottom:1.5rem;">
+      <header style="margin-top:1.5rem; margin-bottom:0.5rem;">
+        <h2 style="font-size:1.15rem; margin:0;">Currently Working On ...</h2>
+      </header>
+      <div class="current-grid" style="display:flex; gap:1rem; flex-wrap:wrap; align-items:stretch;">
+        <div class="current-item" style="flex:1 1 260px; border:1px solid var(--color-border); background:var(--color-bg-elevated); border-radius:8px; padding:0.6rem; display:flex; flex-direction:column; gap:0.5rem;">
+          <h3 style="margin:0; font-size:0.98rem;">Airline Route and Hub Analytics</h3>
+          <img src="../images/united_plane.jpg" alt="United airplane for Airline Route Analysis" style="width:100%; height:160px; object-fit:cover; border-radius:6px;">
+        </div>
+
+        <div class="current-item" style="flex:1 1 260px; border:1px solid var(--color-border); background:var(--color-bg-elevated); border-radius:8px; padding:0.6rem; display:flex; flex-direction:column; gap:0.5rem;">
+          <h3 style="margin:0; font-size:0.98rem;">MLB Ballpark Factor Research</h3>
+          <img src="../images/guaranteed_rate_field.jpg" alt="Guaranteed Rate Field for MLB Ballpark Factor Analysis" style="width:100%; height:160px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </section>
+    <hr class="section-divider" style="margin:1.5rem 0;">
+    <section class="project-list" aria-label="Project highlights" style="margin-top:0.5rem;">
       <article class="project-card">
         <div class="project-card-header">
           <h2 class="project-title">March Madness Squares Are Not Random: A 40-Year Analysis</h2>
@@ -52,6 +68,26 @@
 
       <article class="project-card">
         <div class="project-card-header">
+          <h2 class="project-title">Used Car Sale Price Prediction Model w/ Feedforward Artificial Neural Networks</h2>
+          <p class="project-date">December 2025</p>
+        </div>
+        <div class="project-card-body">
+          <div class="project-copy">
+            <p class="project-description">A supervised regression pipeline trained on just over 6,000 tabular listings to predict used-car sale prices. Workflow performs thorough cleaning and feature engineering on listing attributes, then trains feedforward neural networks using *TensorFlow* with regularization and learning-rate scheduling.</p>
+            <div class="project-actions">
+              <a href="../ResearchProjects/UsedCar/SP_Code.html" class="project-button">
+                See Project →
+              </a>
+            </div>
+          </div>
+          <div class="project-image" aria-label="Used car sale price prediction model image">
+            <img src="../images/used_car.jpg" alt="Used car sale price prediction model">
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-card-header">
           <h2 class="project-title">Crucial Keys</h2>
           <p class="project-date">November 2025</p>
         </div>
@@ -62,7 +98,7 @@
             </p>
             <div class="project-actions">
               <a href="../ResearchProjects/CrucialKeys/CrucialKeys.html" class="project-button">
-                Read More →
+                See Project →
               </a>
             </div>
           </div>
