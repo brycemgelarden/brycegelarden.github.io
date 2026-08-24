@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MLB Ballpark Factor Analysis</title>
+    <style>
+      :root {
+        --bg: #f7f7f5;
+        --paper: #ffffff;
+        --ink: #111111;
+        --muted: #666666;
+        --line: #d9d9d4;
+        --soft: #f0f0ee;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Segoe UI", Arial, sans-serif;
+        line-height: 1.7;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 24px 80px;
+      }
+
+      header {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 24px;
+        margin-bottom: 36px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        line-height: 1.1;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+      }
+
+      .meta-lines {
+        margin-top: 12px;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      .subtitle {
+        margin-top: 12px;
+        max-width: 760px;
+        font-size: 1.05rem;
+        color: var(--muted);
+      }
+
+      .overview {
+        display: grid;
+        grid-template-columns: 1.5fr 0.8fr;
+        gap: 28px;
+        margin-bottom: 48px;
+      }
+
+      .panel {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 24px 22px;
+      }
+
+      .panel h2 {
+        margin-top: 0;
+        font-size: 1.1rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .panel p {
+        margin: 0;
+        color: var(--ink);
+      }
+
+      .meta {
+        display: grid;
+        gap: 14px;
+      }
+
+      .meta-item {
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .meta-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .meta-label {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .section {
+        margin-top: 56px;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 10px;
+        margin-bottom: 18px;
+      }
+
+      .section-header h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .section-number {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .notebook {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 32px 28px;
+        margin-bottom: 26px;
+      }
+
+      .notebook h4 {
+        margin: 0 0 16px;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .notebook-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 0.75fr;
+        gap: 28px;
+        align-items: start;
+      }
+
+      .notebook p {
+        margin: 0 0 16px;
+        color: #1a1a1a;
+      }
+
+      .bullet-list {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--ink);
+      }
+
+      .bullet-list li {
+        margin-bottom: 8px;
+      }
+
+      code {
+        background: #f3f4f6;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+        font-size: 0.95em;
+        color: var(--ink);
+      }
+
+      .figure-box-imgs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        padding: 8px;
+      }
+
+      .figure-box-imgs img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+      }
+
+      .fig-caption {
+        font-size: 0.88rem;
+        color: var(--muted);
+        text-align: center;
+        margin-bottom: 6px;
+      }
+
+      .fig-highlight {
+        display: inline-block;
+        background: linear-gradient(90deg,#fff7e6,#fff3cc);
+        padding: 2px 8px;
+        border-radius: 6px;
+        font-weight: 700;
+        color: #8a5a00;
+        margin-right: 6px;
+      }
+
+      /* SOV centered, markdown-like styling */
+      .sov-center {
+        max-width: 760px;
+      }
+
+      .sov-center h5 {
+        margin: 12px 0 8px;
+        font-size: 1.05rem;
+        letter-spacing: 0.02em;
+        font-weight: 700;
+      }
+
+      .sov-center ul.sov-list {
+        list-style: none;
+        padding: 0;
+        margin: 6px 0 12px;
+      }
+
+      .sov-list li { margin: 6px 0; }
+
+      .sov-table { margin: 12px auto; border-collapse: collapse; width: 90%; max-width: 700px; }
+      .sov-table th, .sov-table td { border: 1px solid var(--line); padding: 8px 10px; }
+      .sov-table th { background: var(--soft); font-weight: 700; }
+
+      .sov-equation { font-size: 1.05rem; margin: 10px 0; font-weight: 600; }
+
+      .sov-note { margin-top: 12px; }
+      .figure-spacer { height: 2rem; }
+      .sov-figure { margin-top: 9rem; }
+      .sov-sep {
+        border: none;
+        height: 1px;
+        background: rgba(0,0,0,0.08);
+        margin: 18px 0;
+      }
+
+      .figure-box {
+        border: 1px solid var(--line);
+        background: var(--soft);
+        min-height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .conclusion {
+        margin-top: 52px;
+        border-top: 1px solid var(--line);
+        padding-top: 28px;
+      }
+
+      .conclusion h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .header-photo {
+        max-width: 240px;
+        width: 22%;
+        height: auto;
+        border-radius: 6px;
+        object-fit: cover;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      }
+
+      .repo-panel {
+        margin-top: 36px;
+        background: linear-gradient(180deg, #ffffff, #fafafa);
+        border: 1px solid var(--line);
+        padding: 18px 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-radius: 6px;
+      }
+
+      .repo-panel p { margin: 0; color: var(--muted); }
+
+      .btn-github {
+        background: #24292e;
+        color: #ffffff;
+        padding: 10px 14px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(36,41,46,0.08);
+      }
+
+      .btn-github:hover { background: #33363a; }
+
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .btn-back .arrow { font-size: 1.05rem; color: var(--muted); }
+
+      .btn-back:hover { box-shadow: 0 6px 14px rgba(0,0,0,0.06); transform: translateY(-1px); }
+
+      @media (max-width: 820px) {
+        .overview,
+        .notebook-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <h1>MLB Ballpark Factor Analysis</h1>
+          <div class="meta-lines">
+            <div>Report By: Bryce Gelarden</div>
+            <div>April 2026</div>
+          </div>
+            <div style="margin-top:12px;">
+              <a class="btn-back" href="../../Pages/projects.html"><span class="arrow">←</span> Back to Research/Projects</a>
+            </div>
+        </div>
+        <img class="header-photo" src="../../images/guaranteed_rate_field.jpg" alt="Guaranteed Rate Field">
+      </header>
+
+      <section class="overview">
+        <div class="panel">
+          <h2>Research Question</h2>
+          <p>
+            <br>
+            <em>Do ballpark environments in Major League Baseball explain variance in pitch type frequencies and pitch type contacy quality across the 2023, 2024, and 2025 seasons in a post pitch-clock and defensive-shift era?</em>
+          </p>
+        </div>
+
+        <aside class="panel meta">
+          <div class="meta-item">
+            <span class="meta-label">Sample</span>
+            <strong>~175,000 total swings</strong> (18,000 swings per park)
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Seasons</span>
+            <strong>2023, 2024, 2025</strong>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Ballparks</span>
+            <strong>29 MLB stadiums</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h3>Notebooks</h3>
+        </div>
+
+        <article class="notebook">
+          <h4>01 · Data Pipeline</h4>
+          <div class="notebook-grid">
+            <div>
+              <p>
+                This notebook establishes the data foundation for the study by importing raw Statcast event-level
+                records, standardizing field names, and aligning pitch, swing, and ballpark metadata into a single
+                analytical structure. Raw pulls were performed with the Python package <code>pybaseball</code>
+                (using the Statcast endpoint) to retrieve all plate-level events across the 2023–2025 seasons; the
+                goal was to make sure each observation is consistently tied to season, stadium, batter, pitcher,
+                pitch type, and swing outcome before any interpretation is attempted.
+              </p>
+              <p>
+                Data filtered strategically, isolating true swing events and produce a clean, analysis-ready
+                sample. The pipeline selects Statcast rows that represent swings (non-null pitch classification and
+                descriptions consistent with swings or contact), limits the set to regular-season games and the
+                29 stadiums with valid park identifiers, and removes duplicate or incomplete records (for example,
+                missing pitch type, missing launch metrics when contact-quality analysis requires them, or invalid
+                park metadata). When contact-quality metrics were needed we additionally required exit velocity and
+                launch angle to be present. These filters preserve the "juicy" observations while avoiding noisy
+                or unusable rows that would bias park-level comparisons.
+              </p>
+              <p>
+                For downstream work, every cleaned swing-level table was exported to CSV —
+                per-season CSVs plus a consolidated master CSV — so the same exact sample can be reloaded without
+                repeating the network pulls. The pipeline also records provenance (query date, <code>pybaseball</code> version,
+                and filtering steps applied) so results are easily audited and/or re-created later.
+              </p>
+            </div>
+            
+          </div>
+        </article>
+
+        <article class="notebook">
+          <h4>02 · Exploratory Analytics</h4>
+          <div class="notebook-grid">
+            <div>
+              <p>
+                Provides the first descriptive view of sampled data, identifying the major patterns
+                in pitch usage and swing behavior before formal modeling. Designed to answer simple, yet
+                essential questions: which pitch types dominate, how often contact occurs, how outcomes vary by
+                venue, and whether seasonal sample is prepared for park-level inference.
+              </p>
+              <p>
+                <span class="fig-highlight">Figure 1</span> shows that fastballs register a higher foul-ball frequency —
+                likely because hitters must catch up to pitch speed and often foul pitches off while adjusting —
+                while also showing a lower whiff (swing-and-miss) rate compared with many breaking pitches, since
+                fastballs travel on a straighter plane and are less likely to induce chase or missed swings.
+              </p>
+              <p>
+                <span class="fig-highlight">Figure 2</span> is an in-play scatter chart showing where the most common
+                in-play balls fall across exit velocity (x-axis) and launch angle (y-axis). The plot emphasizes the
+                dense clusters of typical contact — the hard line-drive band and the lower-velocity ground-ball cloud —
+                and it provides a visual anchor for how contact quality maps to batted-ball profiles in different parks.
+              </p>
+              <p>
+                Overall, exploratory work establishes that sampled data contains genuine
+                variation beyond random league-wide noise, which motivates the more formal park-adjustment work.
+              </p>
+            </div>
+            <div class="figure-box">
+              <div class="figure-box-imgs">
+                <img src="MLB_Ballpark_Factor_Analysis_Images/02_Exploratory_A.png" alt="Figure 1 - Swing Outcome by Pitch Category">
+                <div class="fig-caption">Figure 1: Swing Outcome by Pitch Category 2023-2025 Pooled Sample</div>
+                <img src="MLB_Ballpark_Factor_Analysis_Images/02_Exploratory_B.png" alt="Figure 2 - Exit Velocity vs Launch Angle">
+                <div class="fig-caption">Figure 2: Exit Velocity vs. Launch Angle - In-Play Subset 25,000-observation Subsample</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="notebook">
+          <h4>03 · SOV Construction</h4>
+          <div class="notebook-grid">
+              <div>
+                <div class="sov-center">
+                  <p><strong>SOV (Swing Output Value)</strong> — a two-dimensional, data-driven measure of batted-ball
+                  quality combining exit velocity and launch angle into a single, interpretable score for
+                  park-adjusted comparison and modeling.</p>
+                  <hr class="sov-sep">
+                  <h5>Elite Contact — Definition &amp; Target</h5>
+                  <p>
+                    In Major League Baseball, <strong>elite contact</strong> is defined by the simultaneous combination of
+                    <em>how hard</em> and <em>at what angle</em> a ball is struck. Neither dimension alone is sufficient:
+                  </p>
+                  <ul class="sov-list">
+                    <li>A ball hit at 105 mph into the ground (-10°) is wasted power</li>
+                    <li>A ball hit at 28° off the end of the bat (65 mph) will die in the infield</li>
+                  </ul>
+                  <p>
+                    SOV is built around a single elite contact target — the EV/LA coordinate that represents the peak
+                    of batted ball quality:
+                  </p>
+                  <table class="sov-table">
+                    <thead>
+                      <tr><th>Parameter</th><th>Value</th><th>Rationale</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><code>EV_TARGET</code></td><td><strong>105 mph</strong></td><td>Well into Statcast barrel territory</td></tr>
+                      <tr><td><code>LA_TARGET</code></td><td><strong>28°</strong></td><td>Center of the home run producing sweet spot</td></tr>
+                      <tr><td><code>EV_SCALE</code></td><td>Sample EV stdev.</td><td>Normalizes EV to equal footing with LA in distance calculation</td></tr>
+                      <tr><td><code>LA_SCALE</code></td><td>Sample LA stdev.</td><td>Normalizes LA to equal footing with EV in distance calculation</td></tr>
+                    </tbody>
+                  </table>
+                  <p>
+                    Every observation in the SOV-eligible sample (n=63,625) receives a score based on its
+                    <strong>two-dimensional proximity</strong> to this target. Balls struck close to 105 mph / 28° score
+                    near <strong>1.0</strong>. Balls far from that target in either dimension — weak contact, steep grounders,
+                    popups — score near <strong>0.0</strong>.
+                  </p>
+                  <p class="sov-note"><em>
+                    The scale factors (respective standard deviations) ensure EV and LA contribute equally to the proximity
+                    score, preventing either variable from dominating simply due to its wider raw unit range.
+                  </em></p>
+                  <hr class="sov-sep">
+                  <h5>Linear Mapping to [-1.0 , +1.0]</h5>
+                  <p class="sov-equation"><strong>SOV = 2p - 1</strong>, <em>where <em>p</em> is the empirical percentile rank of each observation.</em></p>
+                  <p>
+                    This guarantees:
+                  </p>
+                  <table class="sov-table">
+                    <thead>
+                      <tr><th>Percentile</th><th>SOV</th><th>Contact Profile</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>0th</td><td><strong>-1.0</strong></td><td>Weakest contact in sample</td></tr>
+                      <tr><td>50th</td><td><strong>0.0</strong></td><td>Median ball in play</td></tr>
+                      <tr><td>100th</td><td><strong>+1.0</strong></td><td>Most elite contact in sample</td></tr>
+                    </tbody>
+                  </table>
+                  <p>
+                    No distributional assumption is made because SOV inherits shape entirely from the empirical
+                    ranking constructed in Section 3.
+                  </p>
+                  <hr class="sov-sep">
+                  <p class="sov-note"><strong>Note:</strong> <em>SOV scores are written back to the SQLite database for downstream use.</em></p>
+                </div>
+              </div>
+            <div class="figure-box sov-figure">
+              <div class="figure-box-imgs">
+                <img src="MLB_Ballpark_Factor_Analysis_Images/03_SOV_A.png" alt="Figure 3 - SOV Scoring Surface">
+                <div class="fig-caption">Figure 3: Joint EV/LA Contact Quality Scoring Surface</div>
+                <div class="fig-caption"><strong>Quick Note:</strong> The ellipse is wider horizontally (EV) and narrower
+                vertically (LA), indicating the surface is more sensitive to launch-angle changes than exit-velocity
+                changes — a small angle move can shrink the score faster than an equivalent EV change.</div>
+                <div class="figure-spacer"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="notebook">
+          <h4>04 · Pitch Type Frequency (Layer 1)</h4>
+          <div class="notebook-grid">
+            <div>
+              <p>This notebook is the first analytical layer and examines park-level pitch-type
+              composition to establish whether venues deviate from league-wide baselines.</p>
+              <hr class="sov-sep">
+
+              <h5>Chi-Square Goodness-of-Fit (GOF) — Park vs. League Baseline</h5>
+              <p>
+                Each stadium's observed pitch-type counts are compared against the league-wide pitch-type distribution
+                using a Chi-Square Goodness-of-Fit test. The test evaluates whether a park's mix (fastballs, breaking
+                balls, offspeed, etc.) deviates more than would be expected by chance given the overall league frequencies.
+              </p>
+              <hr class="sov-sep">
+
+              <p><strong>With 23 of the 29 parks having significant deviations from league-wide pitch type baseline, this confirms that ballpark environment is associated with meaningful differences in pitch type composition across the sample.</strong></p>
+              <p>The 6 parks that do <em>not</em> have significant differences to league-wide averages are:</p>
+              <ul class="bullet-list">
+                <li>BOS (Fenway Park)</li>
+                <li>SEA (T-Mobile Park)</li>
+                <li>AZ (Chase Field)</li>
+                <li>CIN (Great American Ballpark)</li>
+                <li>SD (Petco Park)</li>
+                <li>PHI (Citizens Bank Park)</li>
+              </ul>
+
+              <p>
+                Chi-square magnitudes vary substantially across the significant parks — Milwaukee's chi2 = 95.994
+                is an extreme outlier, while St. Louis (chi2 = 60.21) ranks second but does not visually stand out in the
+                Section 3 stacked-bar, suggesting its deviation may be driven by changes in multiple pitch categories
+                rather than a single fastball-driven effect.
+              </p>
+
+              <p>
+                With ~5,970 swings per park, statistical power is high enough that modest deviations will clear
+                <code>p &lt; 0.05</code>. For this reason, chi-square magnitude (effect size) and the actual deviation
+                patterns in Section 4 are used together to separate meaningful park tendencies from sampling noise.
+              </p>
+              <hr class="sov-sep">
+
+              <p>
+                Summary (Chi2): the GoF tests show statistically significant deviations in pitch mix across
+                parks; magnitude differences (chi2) prioritize which venues warrant follow-up. Section 6's contact-quality
+                work helps interpret whether those composition changes map onto meaningful outcome differences.
+              </p>
+            </div>
+            <div class="figure-box sov-figure">
+              <div class="figure-box-imgs">
+                <img src="MLB_Ballpark_Factor_Analysis_Images/04_PitchTypeFreq_A.png" alt="Figure 4 - Pitch Type Distribution by Park">
+                <div class="fig-caption">Figure 4: Pitch Type Distribution by Park Compared to League Baselines</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="notebook">
+          <h4>05 · Swing Outcome by Pitch (Layer 2)</h4>
+          <div class="notebook-grid">
+            <div>
+              <p>Testing whether parks not only change pitch mix (Layer 1) but
+              also shift the distribution of swing outcomes produced by those pitches.</p>
+              <hr class="sov-sep">
+
+              <h5>Chi-Square Goodness-of-Fit (GOF) — Outcome Distributions</h5>
+              <p>
+                The same Chi-Square GOF framework from Section 4 is applied here to each park's observed swing outcome
+                counts (e.g., foul, miss, weak contact, line drive, etc.) against the league-wide outcome baseline.
+                The test evaluates whether outcome mixes differ from league expectations more than would be expected by chance.
+              </p>
+              <hr class="sov-sep">
+
+              <p><strong>17 of 29 parks deviate significantly from the league outcome baseline (p &lt; 0.05)</strong> — fewer than the 23 of 29 in notebook 04, confirming that parks influence pitch mix more readily than they shift outcome distributions.</p>
+
+              <p><strong>MIL is the standout result.</strong> Its chi2 for outcomes is 1.25 (statistically indistinguishable from league average), despite being the largest pitch-mix outlier in Section 4 (chi2 = 95.99). A park can throw a very different mix while producing near-normal outcomes; contact-quality analysis in Section 6 will help explain why.</p>
+
+              <p>
+                Summary: the outcome-level GOF shows fewer significant deviations than pitch-mix GOF, suggesting
+                that pitch selection shifts are often not sufficient on their own to change broad outcome distributions.
+              </p>
+              <p><strong>Bottom Line:</strong> <strong>parks have more influence over what gets thrown than over what happens when it does.</strong> <em>Or, the higher number of parks deviating, the more systematic the effect.</em></p>
+            </div>
+            <div class="figure-box sov-figure">
+              <div class="figure-box-imgs">
+                <img src="MLB_Ballpark_Factor_Analysis_Images/05_SwingOutcome_A.png" alt="Figure 5 - Swing Outcome Distribution by Park">
+                <div class="fig-caption">Figure 5: Swing Outcome Distribution by Park Compared to League Baselines</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="notebook">
+          <h4>06 · Contact Quality by Pitch (Layer 3)</h4>
+          <div class="notebook-grid">
+            <div>
+              <p>Evaluating contact quality (SOV) at league and park levels,
+              and examines how those effects vary by pitch category.</p>
+              <hr class="sov-sep">
+
+              <p>
+                The pitch-type breakdown reveals that park SOV effects are not uniform across categories; the
+                offspeed panel tells the most important story in this notebook. With ~2,200 in-play observations per
+                park, confidence intervals are wide enough that most parks cannot be cleanly separated from the league median —
+                the signal is clearest at the extremes.
+              </p>
+
+              <p><strong>COL leads at +0.0212</strong> — Coors Field's thin air and hitter-friendly dimensions producing the strongest contact quality in the sample. <strong>SD sits at the bottom at -0.0368</strong> — Petco Park suppresses contact quality.</p>
+
+              <p><strong>MIL at -0.0319 with a CI that does not cross zero</strong> is the most analytically significant result of this section. The pitch-mix outlier of notebook 04 and the outcome-neutral park of notebook 05 is now confirmed as a contact-suppression environment. The sinkers and cutters at American Family Field are producing genuinely weak contact, invisible to whiff and foul rates but unmistakable in SOV. Only CHC, WSH, MIL, and SD have CIs that do not cross zero.</p>
+
+              <hr class="sov-sep">
+
+              <p>
+                Section 4 breaks this down by pitch type to determine whether these park effects are universal or pitch-type specific. <strong>MIL at -0.1168 offspeed SOV deviation is the single most extreme finding in the entire project.</strong> American Family Field suppresses offspeed contact quality at a level no other park approaches.
+              </p>
+
+              <p>
+                SD sits below baseline on all three pitch-type panels — the only park showing consistent contact suppression
+                across fastball, breaking, and offspeed. The fastball panel produces the tightest separation across parks;
+                breaking and offspeed panels carry wider CIs by design (smaller per-park in-play samples).
+              </p>
+
+              <hr class="sov-sep">
+
+              <p>
+                Summary: park-level SOV tells a deliberately conservative story — extreme parks (COL, SD, MIL) stand out,
+                but most parks overlap the league median within uncertainty. Section 4 and Section 5 together help explain
+                whether composition or contact-quality mechanisms drive these differences.
+              </p>
+            </div>
+            <div class="figure-box sov-figure">
+              <div class="figure-box-imgs">
+                <img src="MLB_Ballpark_Factor_Analysis_Images/06_ContactQualityByPitch_A.png" alt="Figure 6 - League-Wide Mean SOV by Pitch Category">
+                <div class="fig-caption">Figure 6: League-Wide Mean SOV by Pitch Category - 2023-2025 Pooled</div>
+                <img src="MLB_Ballpark_Factor_Analysis_Images/06_ContactQualityByPitch_B.png" alt="Figure 7 - Park-Level Mean SOV with CIs">
+                <div class="fig-caption">Figure 7: Park-Level Mean SOV (error bars = 95% CI)</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="notebook">
+          <h4>07 · Park Clustering (Layer 4)</h4>
+          <div class="notebook-grid">
+            <div>
+              <p>Cluster analysis synthesizes the earlier layers by grouping parks on
+              12-feature profile after standardizing features to zero mean and unit variance.</p>
+              <hr class="sov-sep">
+
+              <h5>Feature Scaling</h5>
+              <p>
+                Features are standardized so no single measure dominates clustering due to scale. Below are
+                two core code steps used in the notebook:
+              </p>
+              <pre><code class="language-python">from sklearn.preprocessing import StandardScaler
+import pandas as pd
+
+# X is the DataFrame of 12 features per park
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+X_scaled = pd.DataFrame(X_scaled, columns=X.columns, index=X.index)
+              </code></pre>
+
+              <pre><code class="language-python"># Verify scaling: means ~= 0, stds ~= 1
+means = X_scaled.mean().round(6)
+stds = X_scaled.std().round(6)
+print(means)
+print(stds)
+              </code></pre>
+
+              <hr class="sov-sep">
+
+              <h5>Choosing K: Elbow + Silhouette</h5>
+              <p>
+                Elbow Method inspects <strong>inertia</strong> (cluster compactness), and the <strong>Silhouette Score</strong>
+                evaluating separation. Optimal K is chosen where inertia reduction flattens and silhouette peaks. Both
+                criteria supported K = 5 for this run.
+              </p>
+              <hr class="sov-sep">
+
+              <p>
+                Five data-derived park archetypes emerge from the combined 12-feature profile across all three analytical layers:
+              </p>
+              <table class="sov-table">
+                <thead><tr><th>Archetype</th><th>Parks</th></tr></thead>
+                <tbody>
+                  <tr><td>Swing &amp; Miss</td><td>HOU, LAA, NYM, NYY</td></tr>
+                  <tr><td>Contact Suppression</td><td>MIL</td></tr>
+                  <tr><td>Neutral</td><td>AZ, BOS, CHC, CIN, CLE, CWS, KC, MIA, PHI, SD, SF, STL, WSH</td></tr>
+                  <tr><td>High Contact Quality</td><td>ATL, COL, DET, LAD, PIT</td></tr>
+                  <tr><td>Mixed Profile</td><td>BAL, MIN, SEA, TB, TEX, TOR</td></tr>
+                </tbody>
+              </table>
+
+              <hr class="sov-sep">
+
+
+              <p><strong>MIL standing alone in Contact Suppression is the definitive clustering result of this project.</strong> No other park produces a sufficiently similar combined profile across pitch frequency, swing outcomes, and contact quality to share a cluster. American Family Field is analytically isolated — consistent with notebooks 04–06.</p>
+
+              <hr class="sov-sep">
+
+              <p><strong>The Neutral cluster being the largest at 13 parks confirms that most MLB environments are genuinely average.</strong> Park environment matters, but mostly at the margins; outliers are the exception, not the rule.</p>
+              
+              <hr class="sov-sep">
+            </div>
+            <div class="figure-box">Cluster Profiles / Stadium Groupings</div>
+          </div>
+        </article>
+      </section>
+      
+      <div class="repo-panel">
+        <div>
+          <strong>Explore the full project ...</strong>
+          <p>Check out the full data pipeline, notebooks, and additional materials on GitHub.</p>
+        </div>
+        <div>
+          <a class="btn-github" href="https://github.com/brycemgelarden/MLB_Ballpark_Factor_Analysis.git" target="_blank" rel="noopener noreferrer">View Full Project on GitHub</a>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:18px;">
+        <a class="btn-back" href="../../Pages/projects.html">Back to Research/Projects <span class="arrow">↩</span></a>
+      </div>
+    </div>
+  </body>
+</html>
