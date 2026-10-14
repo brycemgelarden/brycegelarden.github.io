@@ -472,6 +472,10 @@ body > .landing {
 .about-text {
   flex: 1;
   max-width: 60ch;
+  display: grid;
+  grid-template-rows: repeat(3, 68px);
+  gap: 0.9rem;
+  align-items: center;
 }
 
 .text-item {
@@ -484,10 +488,10 @@ body > .landing {
   background: #fff;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   padding: 0.72rem 0.9rem;
-  margin-bottom: 0.55rem;
   border: 1px solid var(--color-border);
   border-left-width: 3px;
   border-left-color: var(--accent);
+  margin-bottom: 0;
 }
 
 .text-item p {
@@ -892,10 +896,15 @@ footer p {
     height: 56px;
   }
 
+  .about-text {
+    display: block;
+  }
+
   .text-item,
   .text-item:not(.third),
   .text-item.third {
     margin-left: 0;
+    margin-bottom: 0.55rem;
     padding-left: 0.85rem;
     padding-right: 0.85rem;
   }
