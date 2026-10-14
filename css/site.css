@@ -219,7 +219,7 @@ body > .landing {
 
 .headshot-wrap {
   display: inline-block;
-  padding: 10px;
+  padding: 12px;
   background: linear-gradient(145deg, #fff 0%, #f0ebe4 100%);
   margin-bottom: 1rem;
   border-radius: var(--radius-md);
@@ -229,7 +229,7 @@ body > .landing {
 
 .landing .headshot-wrap img {
   display: block;
-  width: min(200px, 52vw);
+  width: min(240px, 60vw);
   height: auto;
   aspect-ratio: 200 / 260;
   object-fit: cover;
