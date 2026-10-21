@@ -761,6 +761,14 @@ body > .landing {
   gap: 1.1rem;
 }
 
+.project-card:first-child .project-card-body {
+  align-items: center;
+}
+
+.project-card:first-child .project-image {
+  transform: translateY(-1.5rem);
+}
+
 .project-copy {
   flex: 1;
   min-width: 0;
